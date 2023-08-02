@@ -1,3 +1,2 @@
 #!/bin/bashls 
 ls -l
-git pull
