@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
-#This script configures an Ubuntu server as follows:
-# **** localhost resolves to 127.0.0.2
+# This script configures an Ubuntu server as follows:
+# **** localhost resolves to 127.0.0.1
 # **** facebook.com resolves to 8.8.8.8
 
-cp /etc/hosts ~/hosts.new
-echo "127.0.0.2		localhost" > ~/hosts.new
-echo "8.8.8.8		facebook.com" >> ~/hosts.new
-cp -f ~/hosts.new /etc/hosts
+sudo cp /etc/hosts ~/hosts.new
+
+# Append new entries while preserving existing ones
+echo "127.0.0.2         localhost" >> ~/hosts.new
+echo "8.8.8.8           facebook.com" >> ~/hosts.new
+
+# Copy the modified hosts file back to /etc/hosts using sudo
+sudo cp -f ~/hosts.new /etc/hosts
 
