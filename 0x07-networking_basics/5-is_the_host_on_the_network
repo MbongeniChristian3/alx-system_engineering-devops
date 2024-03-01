@@ -1,8 +1,23 @@
 #!/usr/bin/env bash
-# Pings an IP address passed as an argument.
+# Pings an IPv4 address passed as an argument.
 
-if [[ $1 =~ ^[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-    ping -c 5 "$1"
-else
-    echo "Usage: $0 {IP_ADDRESS}"
+# Check if an argument is provided
+if [ -z "$1" ]; then
+    echo "Usage: $0 {IPv4_ADDRESS}"
+    exit 1
+fi
+
+# Validate the provided IP address
+if ! [[ $1 =~ ^([0-9]{1,3}\.){3}[0-9]{1,3}$ ]]; then
+    echo "Error: Invalid IPv4 address"
+    echo "Usage: $0 {IPv4_ADDRESS}"
+    exit 1
+fi
+
+# Ping the provided IP address
+ping -c 5 "$1"
+
+# Check if ping command failed
+if [ $? -ne 0 ]; then
+    echo "Error: Ping failed for $1"
 fi
