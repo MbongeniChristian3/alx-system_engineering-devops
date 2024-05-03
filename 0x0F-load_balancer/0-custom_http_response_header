@@ -1,0 +1,29 @@
+#/usr/bin/env bash
+# configuring web-01 to have an HTTP response header
+
+#Updating packages
+sudo apt-get update
+sudo apt-get install -y nginx
+
+# Creating an index page
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+# Perfoming redirection
+new_strig="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/besthor permanent;"
+
+sudo sed -i "s/server_name _;/$new_string/" /etc/nginx/sites-enabled/default
+
+# Creating a custom error oage
+
+echo "Ceci 'n'est pas une page" | sudo tee /var/www/html/404.html
+
+# Custom HTTP responsible header
+
+sudo sed -i "server_name _;/a add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-enabled/default
+
+# Test for syntax errors
+
+sudo nginx -t
+
+# Restart nginx
+sudo service nginx restart
