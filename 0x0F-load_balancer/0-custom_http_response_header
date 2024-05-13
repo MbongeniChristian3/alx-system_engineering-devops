@@ -9,11 +9,11 @@ sudo apt-get install -y nginx
 echo "Hello World!" | sudo tee /var/www/html/index.html
 
 # Perfoming redirection
-new_strig="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/besthor permanent;"
+new_string="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/besthor permanent;"
 
 sudo sed -i "s/server_name _;/$new_string/" /etc/nginx/sites-enabled/default
 
-# Creating a custom error oage
+# Creating a custom error page
 
 echo "Ceci 'n'est pas une page" | sudo tee /var/www/html/404.html
 
