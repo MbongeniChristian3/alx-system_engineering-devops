@@ -9,7 +9,7 @@ sudo apt-get install -y nginx
 echo "Hello World!" | sudo tee /var/www/html/index.html
 
 # Perfoming redirection
-new_string="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/besthor permanent;"
+new_string="server_name _;\n\trewrite ^\/redirect_me https:\/\/github.com\/mbongz permanent;"
 
 sudo sed -i "/server_name _;/a add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-enabled/default
 
